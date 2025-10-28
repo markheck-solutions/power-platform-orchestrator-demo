@@ -1,0 +1,51 @@
+{
+  "roles": [
+    {
+      "name": "Expense Admin",
+      "description": "Full administrative access to expense system",
+      "privileges": {
+        "cr_expenserequest": {
+          "create": "Organization",
+          "read": "Organization",
+          "write": "Organization",
+          "delete": "Organization",
+          "assign": "Organization",
+          "share": "Organization"
+        }
+      },
+      "auditEnabled": true
+    },
+    {
+      "name": "Expense Approver",
+      "description": "Can approve expense requests within scope",
+      "privileges": {
+        "cr_expenserequest": {
+          "create": "None",
+          "read": "BusinessUnit",
+          "write": "BusinessUnit",
+          "delete": "None",
+          "assign": "BusinessUnit",
+          "share": "None"
+        }
+      },
+      "auditEnabled": true,
+      "mfaRequired": true
+    },
+    {
+      "name": "Expense Submitter",
+      "description": "Can submit and track own expense requests",
+      "privileges": {
+        "cr_expenserequest": {
+          "create": "User",
+          "read": "User",
+          "write": "User",
+          "delete": "User",
+          "assign": "None",
+          "share": "None"
+        }
+      },
+      "auditEnabled": true
+    }
+  ],
+  "note": "Enterprise version includes advanced role hierarchies and dynamic security groups"
+}

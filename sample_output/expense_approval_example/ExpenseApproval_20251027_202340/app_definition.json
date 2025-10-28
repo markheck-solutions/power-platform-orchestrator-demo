@@ -1,0 +1,52 @@
+{
+  "name": "Expense Approval System",
+  "uniqueName": "expense_approval",
+  "type": "ModelDriven",
+  "description": "Enterprise expense approval workflow with governance",
+  "tables": [
+    {
+      "logicalName": "cr_expenserequest",
+      "displayName": "Expense Request",
+      "attributes": [
+        {
+          "name": "cr_amount",
+          "type": "Money",
+          "required": true
+        },
+        {
+          "name": "cr_category",
+          "type": "OptionSet",
+          "required": true
+        },
+        {
+          "name": "cr_justification",
+          "type": "Memo",
+          "required": true
+        },
+        {
+          "name": "cr_status",
+          "type": "OptionSet",
+          "required": true
+        },
+        {
+          "name": "cr_approver",
+          "type": "Lookup",
+          "target": "systemuser"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "name": "Expense Approval Workflow",
+      "type": "automated",
+      "trigger": "Dataverse - When row is added or modified"
+    }
+  ],
+  "securityRoles": [
+    "Expense Admin",
+    "Expense Approver",
+    "Expense Submitter"
+  ],
+  "note": "Enterprise version includes advanced routing, policy engines, and analytics"
+}
